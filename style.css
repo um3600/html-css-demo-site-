@@ -9,8 +9,20 @@
   box-sizing: border-box;
 }
 
-body {
-  cursor: url(./images/corosor.cur) 16 16 , auto;
+
+.product-card button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  background: #0056b3;
 }
 
 a {
@@ -184,7 +196,7 @@ body {
 /* banner */
 .offer-banner {
   margin: 60px 8%;
-  
+
 
   background: #000 url('./images/banner2.png') center/cover no-repeat;
   color: white;

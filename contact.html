@@ -18,8 +18,7 @@
         <a href="My-Cart.html">My Cart</a>
       </nav>
     </div>
-</header>
-<section class="contact-wrapper">
+</header><section class="contact-wrapper">
     <div class="contact-box">
 
         <div class="contact-heading">
@@ -27,25 +26,26 @@
             <p>Have a question or need help? Feel free to contact us.</p>
         </div>
 
-        <form class="contact-form">
+        <!-- Add action and method -->
+        <form class="contact-form" action="send_email.php" method="POST">
             <div class="form-group">
                 <label>Your Name :</label>
-                <input type="text" placeholder="Enter your name">
+                <input type="text" name="name" placeholder="Enter your name" required>
             </div>
 
             <div class="form-group">
                 <label>Email Address :</label>
-                <input type="email" placeholder="Enter your email">
+                <input type="email" name="email" placeholder="Enter your email" required>
             </div>
 
             <div class="form-group">
                 <label>Subject :</label>
-                <input type="text" placeholder=" Feedback">
+                <input type="text" name="subject" placeholder="Feedback" required>
             </div>
 
             <div class="form-group">
                 <label>Your Message :</label>
-                <textarea rows="5" placeholder="Write your message here..."></textarea>
+                <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
             </div>
 
             <button type="submit" class="send-btn">Send Message</button>
@@ -53,6 +53,7 @@
 
     </div>
 </section>
+
 <footer>
     <div class="footer-wrap">
       <div class="footer-col">
@@ -71,9 +72,9 @@
       <div class="footer-col">
         <h4>Customer Care</h4>
         <ul>
-          <li><a href="#">My Account</a></li>
-          <li><a href="#">Orders</a></li>
-          <li><a href="#">Wishlist</a></li>
+          <li><a href="contact.html">My Account</a></li>
+          <li><a href="My-Cart.html">Orders</a></li>
+          <li><a href="product.html">Wishlist</a></li>
         </ul>
       </div>
       <div class="footer-col">

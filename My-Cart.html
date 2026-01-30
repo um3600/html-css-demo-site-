@@ -1,162 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Cart</title>
-    <link rel="stylesheet" href="cart.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>My Cart</title>
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header class="navbar">
-    <div class="container">
-      <h1 class="logo">Ecomshop</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="product.html">Products</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
-        <a href="My-Cart.html">My Cart</a>
-      </nav>
-    </div>
-  </header>
 
+<body>
+
+<!-- ===== Navbar ===== -->
+<header class="navbar">
+  <div class="container">
+    <h1 class="logo">Ecomshop</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="My-Cart.html">My Cart</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Cart ===== -->
 <div class="cart-wrapper">
 
-    <h1 class="cart-title">My Cart</h1>
+  <h1 class="cart-title">My Cart</h1>
 
-    <!-- Cart Item -->
-    <div class="cart-item">
-        <img src="./images/hot_2.png" alt="Product Image" class="cart-img">
+  <!-- Cart Items -->
+  <div id="cart-items"></div>
 
-        <div class="cart-details">
-            <h3 class="product-name">Ladies Dress</h3>
-            <p class="product-price">$195</p>
-        </div>
+  <!-- Summary -->
+  <div class="cart-summary">
+    <h2>Order Summary</h2>
+    <p>Subtotal: <span id="subtotal">$0</span></p>
+    <p>Shipping: <span>Free</span></p>
+    <h3>Total: <span id="total">$0</span></h3>
 
-        <div class="cart-qty">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-        </div>
-
-        <p class="cart-total">$195</p>
-        <button class="remove-btn">Remove</button>
-        
-    </div>
-
-    
-    <div class="cart-item">
-        <img src="./images/hot_1.png" alt="Product Image" class="cart-img">
-
-        <div class="cart-details">
-            <h3 class="product-name">Ladies Purse</h3>
-            <p class="product-price">$120</p>
-        </div>
-
-        <div class="cart-qty">
-            <button>-</button>
-            <span>2</span>
-            <button>+</button>
-        </div>
-
-        <p class="cart-total">$120</p>
-        <button class="remove-btn">Remove</button>
-    </div>
-   
-    <div class="cart-item">
-        <img src="./images/hot_3.png" alt="Product Image" class="cart-img">
-
-        <div class="cart-details">
-            <h3 class="product-name">Bag</h3>
-            <p class="product-price">$150</p>
-        </div>
-
-        <div class="cart-qty">
-            <button>-</button>
-            <span>2</span>
-            <button>+</button>
-        </div>
-
-        <p class="cart-total">$150</p>
-        <button class="remove-btn">Remove</button>
-    </div>
-    <div class="cart-item">
-        <img src="./images/product3.png" alt="Product Image" class="cart-img">
-
-        <div class="cart-details">
-            <h3 class="product-name">Dress</h3>
-            <p class="product-price">$150</p>
-        </div>
-
-        <div class="cart-qty">
-            <button>-</button>
-            <span>2</span>
-            <button>+</button>
-        </div>
-
-        <p class="cart-total">$150</p>
-        <button class="remove-btn">Remove</button>
-    </div>
-  
-    <div class="cart-item">
-        <img src="./images/product13.jpg" alt="Product Image" class="cart-img">
-
-        <div class="cart-details">
-            <h3 class="product-name">Watch</h3>
-            <p class="product-price">$3580</p>
-        </div>
-
-        <div class="cart-qty">
-            <button>-</button>
-            <span>2</span>
-            <button>+</button>
-        </div>
-
-        <p class="cart-total">$3580</p>
-        <button class="remove-btn">Remove</button>
-    </div>
-
-    <!-- Summary -->
-    <div class="cart-summary">
-        <h2>Order Summary</h2>
-        <p>Subtotal: <span>$4195</span></p>
-        <p>Shipping: <span>Free</span></p>
-        <h3>Total: <span>$4195</span></h3>
-
-        <button class="checkout-btn">Proceed to Checkout</button>
-    </div>
+    <button class="checkout-btn"><a href="My-Cart.html">Proceed to Checkout</a></button>
+  </div>
 
 </div>
+
+<!-- ===== Footer ===== -->
 <footer>
-    <div class="footer-wrap">
-      <div class="footer-col">
-        <h4>About</h4>
-        <p>An E-commerce website is an online platform where people can buy and sell products or services through the internet. Customers select items, add them to a cart, make payment, and receive the products at home.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="product.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Customer Care</h4>
-        <ul>
-          <li><a href="#">My Account</a></li>
-          <li><a href="#">Orders</a></li>
-          <li><a href="#">Wishlist</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p>Email: E-Com@example.com<br />Phone: +00 000 0000</p>
-      </div>
+  <div class="footer-wrap">
+    <div class="footer-col">
+      <h4>About</h4>
+      <p>
+        An E-commerce website is an online platform where people can buy and sell
+        products through the internet.
+      </p>
     </div>
-    <div class="copy">© 2026 E‑Commerce. </div>
-  </footer>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Shop</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Wishlist</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>Email: E-Com@example.com<br>Phone: +00 000 0000</p>
+    </div>
+  </div>
+
+  <div class="copy">© 2026 E-Commerce</div>
+</footer>
+
+<!-- ===== Cart JS (Human Written) ===== -->
+<script>
+  let cartBox = document.getElementById("cart-items");
+  let subtotalBox = document.getElementById("subtotal");
+  let totalBox = document.getElementById("total");
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function renderCart() {
+    cartBox.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+      cartBox.innerHTML = "<p>Your cart is empty</p>";
+      subtotalBox.innerText = "$0";
+      totalBox.innerText = "$0";
+      return;
+    }
+
+    cart.forEach((item, index) => {
+      let itemTotal = item.price * item.qty;
+      total += itemTotal;
+
+      cartBox.innerHTML += `
+        <div class="cart-item">
+          <img src="${item.img}" class="cart-img">
+
+          <div class="cart-details">
+            <h3 class="product-name">${item.name}</h3>
+            <p class="product-price">$${item.price}</p>
+          </div>
+
+          <div class="cart-qty">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)">+</button>
+          </div>
+
+          <p class="cart-total">$${itemTotal}</p>
+          <button class="remove-btn" onclick="removeItem(${index})">
+            Remove
+          </button>
+        </div>
+      `;
+    });
+
+    subtotalBox.innerText = "$" + total;
+    totalBox.innerText = "$" + total;
+  }
+
+  function changeQty(index, value) {
+    cart[index].qty += value;
+
+    if (cart[index].qty < 1) {
+      cart[index].qty = 1;
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  renderCart();
+</script>
 
 </body>
 </html>
