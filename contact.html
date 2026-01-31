@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header class="navbar">
+<body>  <!-- Navbar -->
+  <header class="navbar">
     <div class="container">
-      <h1 class="logo">Ecomshop</h1>
-      <nav>
+      <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
+      <button class="nav-toggle">&#9776;</button>
+      <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="product.html">Products</a>
         <a href="blog.html">Blog</a>
@@ -18,6 +19,8 @@
         <a href="My-Cart.html">My Cart</a>
       </nav>
     </div>
+  </header>
+
 </header><section class="contact-wrapper">
     <div class="contact-box">
 
@@ -84,6 +87,16 @@
     </div>
     <div class="copy">© 2026 E‑Commerce. </div>
   </footer>
+<script>
+  const toggleButton = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
+  toggleButton.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+</body>
+
+</html>
 </body>
 </html>
