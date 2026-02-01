@@ -36,6 +36,7 @@ a {
 
 }
 
+/* 
 .navbar {
   background: #222;
   color: #fff;
@@ -56,6 +57,69 @@ a {
   margin-left: 20px;
   color: #fff;
   font-size: 14px;
+} */
+/* ===== FIXED RESPONSIVE NAVBAR ===== */
+
+.navbar {
+  background: #222;
+  color: #fff;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  font-size: 15px;
+}
+
+/* Mobile */
+.nav-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #222;
+    flex-direction: column;
+    text-align: center;
+    display: none;
+    padding: 15px 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+  }
 }
 
 * {
@@ -437,7 +501,7 @@ body {
   text-align: center;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .content-card h2 {
@@ -501,7 +565,249 @@ body {
     font-size: 24px;
   }
 
+
+
   .content-card p {
     font-size: 14px;
+  }
+}
+
+.checkout-container,
+.success-box {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: Arial;
+}
+
+.checkout-container h2,
+.success-box h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkout-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.checkout-container button {
+  width: 100%;
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.success-box {
+  text-align: center;
+}
+
+.receipt {
+  background: #f7f7f7;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.success-box a {
+  display: inline-block;
+  margin-top: 15px;
+  color: white;
+  background: green;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .receipt,
+  .receipt * {
+    visibility: visible;
+  }
+
+  .receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.print-btn {
+  background-color: #007bff;
+}
+
+.login-box {
+  width: 300px;
+  margin: 120px auto;
+  padding: 25px;
+  box-shadow: 0 0 10px #ccc;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.admin-title {
+  text-align: center;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.card {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  width: 150px;
+  text-align: center;
+}
+
+.danger-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+
+  .stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+  }
+
+  th {
+    background: #f0f0f0;
+  }
+
+  td {
+    padding: 8px;
+  }
+}
+
+td {
+  font-weight: 500;
+}
+
+/* ===== Footer Mobile ===== */
+@media (max-width: 768px) {
+  footer .footer-wrap {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .offer-banner {
+    padding: 30px 15px;
+  }
+
+  .hero-box {
+    padding: 20px;
+  }
+
+  .hero-box h1 {
+    font-size: 28px;
+  }
+
+  .hero-box p {
+    font-size: 16px;
+  }
+
+  .category-card img,
+  .product-card img,
+  .blog-card img {
+    height: auto;
+  }
+}
+
+/* ===== Buttons & Inputs ===== */
+button,
+.product-card a,
+.content-card .btn {
+  transition: all 0.3s ease;
+}
+
+/* ===== Admin / Stats Cards Mobile ===== */
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80%;
+    margin-bottom: 15px;
+  }
+}
+
+/* ===== Tables Mobile ===== */
+@media (max-width: 768px) {
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    font-weight: bold;
+    content: attr(data-label);
   }
 }

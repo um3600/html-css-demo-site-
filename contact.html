@@ -1,102 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Contact Us | E-Com</title>
-    <link rel="stylesheet" href="contact.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Ecomshop</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: #222;
+      color: white;
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-wrapper {
+      padding: 80px 8%;
+      background: #f6f6f6;
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-box {
+      background: white;
+      max-width: 520px;
+      width: 100%;
+      padding: 35px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-heading h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .contact-heading p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      resize: none;
+    }
+
+    .send-btn {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .send-btn:hover {
+      background: #333;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 50px 8% 20px;
+    }
+
+    .footer-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .copy {
+      text-align: center;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+      padding-top: 10px;
+      font-size: 13px;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #222;
+        flex-direction: column;
+        text-align: center;
+        display: none;
+        padding: 15px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px;
+        border-bottom: 1px solid #333;
+      }
+
+      .contact-box {
+        padding: 25px;
+      }
+    }
+  </style>
+
 </head>
-<body>  <!-- Navbar -->
+
+<body>
+
+  <!-- NAVBAR -->
   <header class="navbar">
     <div class="container">
-      <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
-      <button class="nav-toggle">&#9776;</button>
-      <nav class="nav-links">
+      <div class="logo">Ecomshop</div>
+
+      <button class="nav-toggle" id="navToggle">☰</button>
+
+      <div class="nav-links" id="navMenu">
         <a href="index.html">Home</a>
         <a href="product.html">Products</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <a href="My-Cart.html">My Cart</a>
-      </nav>
+        <a href="My-Cart.html">My-Cart</a>
+
+        <a href="admin-login.html">Admin-Page</a>
+
+      </div>
     </div>
   </header>
 
-</header><section class="contact-wrapper">
+  <!-- CONTACT -->
+  <section class="contact-wrapper">
     <div class="contact-box">
 
-        <div class="contact-heading">
-            <h2>Get in Touch</h2>
-            <p>Have a question or need help? Feel free to contact us.</p>
+      <div class="contact-heading">
+        <h2>Get in Touch</h2>
+        <p>Have a question or need help? Feel free to contact us.</p>
+      </div>
+
+      <form class="contact-form" action="send_email.php" method="POST">
+
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="Enter your name" required>
         </div>
 
-        <!-- Add action and method -->
-        <form class="contact-form" action="send_email.php" method="POST">
-            <div class="form-group">
-                <label>Your Name :</label>
-                <input type="text" name="name" placeholder="Enter your name" required>
-            </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </div>
 
-            <div class="form-group">
-                <label>Email Address :</label>
-                <input type="email" name="email" placeholder="Enter your email" required>
-            </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="Feedback" required>
+        </div>
 
-            <div class="form-group">
-                <label>Subject :</label>
-                <input type="text" name="subject" placeholder="Feedback" required>
-            </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
 
-            <div class="form-group">
-                <label>Your Message :</label>
-                <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
-            </div>
+        <button type="submit" class="send-btn">Send Message</button>
 
-            <button type="submit" class="send-btn">Send Message</button>
-        </form>
+      </form>
 
     </div>
-</section>
+  </section>
 
-<footer>
-    <div class="footer-wrap">
-      <div class="footer-col">
-        <h4>About</h4>
-        <p>An E-commerce website is an online platform where people can buy and sell products or services through the internet. Customers select items, add them to a cart, make payment, and receive the products at home.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="product.html">Shop</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Customer Care</h4>
-        <ul>
-          <li><a href="contact.html">My Account</a></li>
-          <li><a href="My-Cart.html">Orders</a></li>
-          <li><a href="product.html">Wishlist</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p>Email: E-Com@example.com<br />Phone: +00 000 0000</p>
-      </div>
-    </div>
-    <div class="copy">© 2026 E‑Commerce. </div>
-  </footer>
-<script>
-  const toggleButton = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
+  <!-- FOOTER -->
+    <footer>
+        <div class="footer-wrap">
+            <div class="footer-col">
+                <h4>About</h4>
+                <p>An E-commerce website is an online platform where people can buy and sell products or services
+                    through the internet. Customers select items, add them to a cart, make payment, and receive the
+                    products at home.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Shop</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="contact.html">My Account</a></li>
+                    <li><a href="My-Cart.html">Orders</a></li>
+                    <li><a href="product.html">Wishlist</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email: info@example.com<br />Phone: +00 123 456</p>
+            </div>
+        </div>
+        <div class="copy">© 2026 E‑Commerce. All rights reserved.</div>
+    </footer>
 
-  toggleButton.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-  });
-</script>
+
+  <!-- NAV JS -->
+  <script>
+    document.getElementById("navToggle").onclick = function () {
+      document.getElementById("navMenu").classList.toggle("show");
+    };
+  </script>
+
 </body>
 
-</html>
-</body>
 </html>

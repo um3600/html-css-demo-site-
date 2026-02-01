@@ -85,31 +85,20 @@
 </head>
 
 <body>
-    <!-- <header class="navbar">
+    <header class="navbar">
         <div class="container">
-            <h1 class="logo">Ecomshop</h1>
-            <nav>
+            <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
+            <button class="nav-toggle">&#9776;</button>
+            <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="product.html">Products</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
                 <a href="My-Cart.html">My Cart</a>
+                <a href="admin-login.html">Admin-Page</a>
             </nav>
         </div>
-    </header> -->
-<header class="navbar">
-    <div class="container">
-      <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
-      <button class="nav-toggle">&#9776;</button>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="product.html">Products</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
-        <a href="My-Cart.html">My Cart</a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
     <section class="product-sec">
         <h2 class="sec-title">Latest Products</h2>
@@ -371,14 +360,14 @@
             });
         });
     </script>
-<script>
-    const toggleButton = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    <script>
+        const toggleButton = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-    toggleButton.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  </script>
+        toggleButton.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    </script>
 </body>
 
 </html>

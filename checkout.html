@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+        <form id="checkoutForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="account" placeholder="Account Number" required>
+            <input type="number" id="amount" placeholder="Total Amount ($)" required>
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // fetch input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const account = document.getElementById("account").value;
+            const amount = document.getElementById("amount").value;
+
+            // create order object
+            const orderData = {
+                orderId: "ECOM-" + Math.floor(100000 + Math.random() * 900000),
+                name: name,
+                email: email,
+                account: account,
+                amount: amount,
+                status: "Paid"
+            };
+
+            // save order for success page
+            localStorage.setItem("order", JSON.stringify(orderData));
+
+            // save order in orders array for admin dashboard
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(orderData);
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            // optional: clear cart
+            localStorage.removeItem("cart");
+
+            // redirect to success
+            window.location.href = "success.html";
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- <header class="navbar">
+    <div class="container">
+      <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
+      <button class="nav-toggle">&#9776;</button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a href="My-Cart.html">My Cart</a>
+                <a href="admin-login.html">Admin-Page</a>
+
+      </nav>
+    </div>
+  </header> -->
+
+    <header class="navbar">
+        <div class="nav-container">
+            <h2 class="logo">Ecomshop</h2>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+
+            <div class="menu-btn" id="menuBtn">
+                ☰
+            </div>
+        </div>
+    </header>
+
+    <script>
+        if (localStorage.getItem("adminLogged") !== "true") {
+            alert("Unauthorized Access");
+            window.location.href = "admin-login.html";
+        }
+    </script>
+
+    <h1 class="admin-title">📊 Admin Dashboard</h1>
+
+    <div class="stats">
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p id="totalOrders">0</p>
+        </div>
+        <div class="card">
+            <h3>Total Sales</h3>
+            <p>$<span id="totalSales">0</span></p>
+        </div>
+    </div>
+
+    <button onclick="clearOrders()" class="danger-btn">❌ Clear All Orders</button>
+    <button onclick="clearCart()">🛒 Clear User Cart</button>
+    <button onclick="logout()">Logout</button>
+
+    <canvas id="salesChart" height="100"></canvas>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Account</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="orderTable"></tbody>
+    </table>
+
+    <script>
+        // Load orders from localStorage
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const table = document.getElementById("orderTable");
+
+        // Calculate total sales
+        let totalSales = 0;
+        orders.forEach(o => totalSales += Number(o.amount));
+
+        // Update stats
+        document.getElementById("totalOrders").innerText = orders.length;
+        document.getElementById("totalSales").innerText = totalSales;
+
+        // Display orders in table
+        if (orders.length === 0) {
+            table.innerHTML = "<tr><td colspan='6'>No Orders</td></tr>";
+        } else {
+            orders.forEach(o => {
+                table.innerHTML += `
+<tr>
+  <td>${o.orderId}</td>
+  <td>${o.name}</td>
+  <td>${o.email}</td>
+  <td>${o.account}</td>
+  <td>$${o.amount}</td>
+  <td>${o.status}</td>
+</tr>
+`;
+            });
+        }
+
+        // Clear all orders
+        function clearOrders() {
+            if (confirm("Delete all orders?")) {
+                localStorage.removeItem("orders");
+                location.reload();
+            }
+        }
+
+        // Clear user cart
+        function clearCart() {
+            localStorage.removeItem("cart");
+            alert("Cart cleared");
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem("adminLogged");
+            window.location.href = "admin-login.html";
+        }
+
+        // Sales Chart
+        const canvas = document.getElementById("salesChart");
+        const ctx = canvas.getContext("2d");
+
+        const sales = orders.map(o => Number(o.amount));
+        const max = Math.max(...sales, 100);
+
+        ctx.fillStyle = "#eee";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        sales.forEach((val, i) => {
+            const barHeight = (val / max) * canvas.height;
+            ctx.fillStyle = "#4CAF50";
+            ctx.fillRect(i * 50 + 30, canvas.height - barHeight, 30, barHeight);
+        });
+    </script>
+
+</body>
+
+</html>
