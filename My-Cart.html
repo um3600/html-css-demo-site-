@@ -388,7 +388,13 @@
 
     renderCart();
   </script>
+<script>
+  if(localStorage.getItem("userLogged") !== "true"){
+    alert("You must login first!");
+    window.location.href = "login.html";
+}
 
+</script>
 </body>
 
 </html>

@@ -811,3 +811,78 @@ button,
     content: attr(data-label);
   }
 }
+/* Dark mode toggle button */
+.theme-btn {
+  background: #111;          /* black navbar pe visible */
+  color: #fff;               /* icon white */
+  border: 1px solid #444;    /* thora outline */
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* hover effect */
+.theme-btn:hover {
+  background: #222;
+}
+
+/* dark mode me button thora light */
+body.dark .theme-btn {
+  background: #fff;
+  color: #000;
+  border-color: #ccc;
+}
+body.dark .theme-btn:hover {
+  background: #f0f0f0;
+}
+/* SITE DARK MODE */
+body.dark {
+  background: #121212;
+  color: #eaeaea;
+}
+
+/* Social icons under About */
+.footer-social-icons {
+  margin-top: 12px;
+}
+
+.footer-social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.footer-social-icons img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;        /* <- circle shape */
+  object-fit: cover;          /* image properly fit ho */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect */
+.footer-social-icons img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px #ffd700;  /* golden glow */
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .footer-social-icons a {
+    margin-right: 8px;
+  }
+
+  .footer-social-icons img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Dark Mode tweak */
+body.dark .footer-social-icons img {
+  filter: brightness(0.9);
+}
+body.dark .footer-social-icons img:hover {
+  box-shadow: 0 0 5px #ffa500;  /* orange glow in dark mode */
+}

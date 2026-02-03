@@ -79,7 +79,54 @@
             window.location.href = "success.html";
         });
     </script>
+<script>
+// Check if user is logged in
+if(localStorage.getItem("userLogged") !== "true"){
+    alert("You must login before placing an order!");
+    window.location.href = "login.html"; // redirect guest to login
+}
 
+// Example: Place Order function
+function placeOrder() {
+    // get current user info
+    const name = localStorage.getItem("userName");
+    const email = localStorage.getItem("userEmail");
+
+    if(!name || !email){
+        alert("User info missing, login again!");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Example order data
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    const newOrder = {
+        orderId: "ORD" + (orders.length + 1),
+        name: name,
+        email: email,
+        account: "Cash/Online", // example
+        amount: 50, // example amount
+        status: "Pending"
+    };
+
+    orders.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    alert("Order placed successfully!");
+    location.reload(); // refresh page
+}
+
+// Example button in HTML:
+// <button onclick="placeOrder()">Place Order</button>
+</script>
+<script>
+    if(localStorage.getItem("userLogged") !== "true"){
+    alert("You must login first!");
+    window.location.href = "login.html";
+}
+
+</script>
 </body>
 
 </html>

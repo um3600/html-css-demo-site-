@@ -3,18 +3,279 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #111;
+            color: #fff;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Nav links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Toggle button */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Admin title */
+        .admin-title {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 28px;
+        }
+
+        /* Stats cards */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stats .card {
+            background: #222;
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        /* Buttons */
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .danger-btn {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .danger-btn:hover {
+            background: #c0392b;
+        }
+
+        button:hover:not(.danger-btn) {
+            background: #4caf50;
+            color: #fff;
+        }
+
+        /* Canvas chart */
+        #salesChart {
+            display: block;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            max-width: 95%;
+        }
+
+        /* Orders table */
+        table {
+            width: 95%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ccc;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        table th {
+            background: #222;
+            color: #fff;
+        }
+
+        table td {
+            background: #333;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) td {
+            background: #2a2a2a;
+        }
+
+        /* Responsive navbar */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background: #111;
+                width: 100%;
+                margin-top: 10px;
+                padding: 10px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 8px 20px;
+                border-top: 1px solid #222;
+            }
+        }
+
+        /* Responsive stats & table */
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            #salesChart {
+                height: 150px;
+            }
+        }
+
+        .user-info {
+            background: #222;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .user-info h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+
+        .users-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .user-card {
+            background: #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+            flex: 1 1 200px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .user-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .user-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .users-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Ecomshop</a></h1>
+
+            <!-- Toggle button for mobile -->
+            <button class="nav-toggle" aria-label="Toggle Navigation">&#9776;</button>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="My-Cart.html">My Cart</a>
+                <a href="admin-login.html">Admin-Page</a>
+            </nav>
+        </div>
+    </header>
+
+>>>>>>> 764c1b4 (Update)
     <script>
         if (localStorage.getItem("adminLogged") !== "true") {
             alert("Unauthorized Access");
             window.location.href = "admin-login.html";
         }
     </script>
+<<<<<<< HEAD
     <header class="navbar">
     <div class="container">
       <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
@@ -31,6 +292,8 @@
     </div>
   </header> 
     
+=======
+>>>>>>> 764c1b4 (Update)
 
     <h1 class="admin-title">📊 Admin Dashboard</h1>
 
@@ -43,6 +306,9 @@
             <h3>Total Sales</h3>
             <p>$<span id="totalSales">0</span></p>
         </div>
+        <!-- <div class="card">          -->
+        <!-- </div></div> -->
+
     </div>
 
     <button onclick="clearOrders()" class="danger-btn">❌ Clear All Orders</button>
@@ -64,7 +330,18 @@
         </thead>
         <tbody id="orderTable"></tbody>
     </table>
-
+    <!-- <div class="user-info">
+        <h3>Logged-in Users</h3>
+        <div class="users-list">
+            <p id="userNames">Names: </p>
+            <p id="userEmails">Emails: </p>
+        </div>
+    </div> -->
+     <div class="user-info">
+        <h3>Logged-in Users</h3>
+        <div id="usersContainer" class="users-container"></div>
+    </div>
+<!--
     <script>
         // Load orders from localStorage
         let orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -132,6 +409,137 @@
             ctx.fillRect(i * 50 + 30, canvas.height - barHeight, 30, barHeight);
         });
     </script>
+    <script>
+        const toggleButton = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        toggleButton.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    </script>
+    <script>
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const email = document.getElementById("email").value.trim();
+        const name = document.getElementById("name").value.trim();
+
+        if (!users.some(u => u.email === email)) {
+            users.push({ name, email });
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+
+    </script>
+    <script>
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const usersContainer = document.getElementById("usersContainer");
+        usersContainer.innerHTML = ""; // clear old content
+
+        if (users.length === 0) {
+            usersContainer.innerHTML = "<p>No users logged in yet</p>";
+        } else {
+            users.forEach(user => {
+                const card = document.createElement("div");
+                card.classList.add("user-card");
+                card.innerHTML = `<p><strong>Name:</strong> ${user.name}</p>
+                          <p><strong>Email:</strong> ${user.email}</p>`;
+                usersContainer.appendChild(card);
+            });
+        }
+
+    </script> -->
+<script>
+window.onload = function() {
+    /* ------------------ ORDERS + STATS ------------------ */
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const table = document.getElementById("orderTable");
+    table.innerHTML = ""; // clear old rows
+
+    // Calculate total sales
+    let totalSales = 0;
+    orders.forEach(o => totalSales += Number(o.amount));
+    document.getElementById("totalOrders").innerText = orders.length;
+    document.getElementById("totalSales").innerText = totalSales;
+
+    // Display orders in table
+    if (orders.length === 0) {
+        table.innerHTML = "<tr><td colspan='6'>No Orders</td></tr>";
+    } else {
+        orders.forEach(o => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${o.orderId}</td>
+                <td>${o.name}</td>
+                <td>${o.email}</td>
+                <td>${o.account}</td>
+                <td>$${o.amount}</td>
+                <td>${o.status}</td>
+            `;
+            table.appendChild(row);
+        });
+    }
+
+    // ------------------ SALES CHART ------------------
+    const canvas = document.getElementById("salesChart");
+    const ctx = canvas.getContext("2d");
+
+    const sales = orders.map(o => Number(o.amount));
+    const max = Math.max(...sales, 100);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#eee";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    sales.forEach((val, i) => {
+        const barHeight = (val / max) * canvas.height;
+        ctx.fillStyle = "#4CAF50";
+        ctx.fillRect(i * 50 + 30, canvas.height - barHeight, 30, barHeight);
+    });
+
+    /* ------------------ LOGGED-IN USERS ------------------ */
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const usersContainer = document.getElementById("usersContainer");
+    usersContainer.innerHTML = "";
+
+    if(users.length === 0){
+        usersContainer.innerHTML = "<p>No users logged in yet</p>";
+    } else {
+        users.forEach(user => {
+            const card = document.createElement("div");
+            card.classList.add("user-card");
+            card.innerHTML = `
+                <p><strong>Name:</strong> ${user.name}</p>
+                <p><strong>Email:</strong> ${user.email}</p>
+            `;
+            usersContainer.appendChild(card);
+        });
+    }
+
+    /* ------------------ NAVBAR TOGGLE ------------------ */
+    const toggleButton = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    toggleButton.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+
+    /* ------------------ BUTTONS ------------------ */
+    window.clearOrders = function() {
+        if(confirm("Delete all orders?")){
+            localStorage.removeItem("orders");
+            location.reload();
+        }
+    };
+
+    window.clearCart = function() {
+        localStorage.removeItem("cart");
+        alert("Cart cleared");
+    };
+
+    window.logout = function() {
+        localStorage.removeItem("adminLogged");
+        window.location.href = "admin-login.html";
+    };
+};
+</script>
 
 </body>
 
