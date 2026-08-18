@@ -1,295 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog | Ecomshop</title>
+  <title>Blog | EcomShop</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background: #222;
-      color: white;
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .nav-toggle {
-      display: none;
-      font-size: 26px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* ===== BLOG HERO ===== */
-    .blog-hero {
-      background: #f5f5f5;
-      padding: 70px 20px;
-      text-align: center;
-    }
-
-    .blog-hero h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    /* ===== BLOG GRID ===== */
-    .blog-container {
-      padding: 70px 8%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      background: white;
-    }
-
-    .blog-card {
-      background: white;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      transition: 0.3s;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .blog-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .blog-content {
-      padding: 22px;
-    }
-
-    .blog-date {
-      font-size: 12px;
-      color: #888;
-    }
-
-    .blog-content h3 {
-      font-size: 20px;
-      margin: 8px 0;
-    }
-
-    .blog-content p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #555;
-    }
-
-    .read-btn {
-      display: inline-block;
-      background: black;
-      color: white;
-      padding: 9px 22px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 13px;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #111;
-      color: #ccc;
-      padding: 50px 8% 20px;
-    }
-
-    .footer-wrap {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-    }
-
-    .footer-col h4 {
-      color: white;
-      margin-bottom: 15px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-col a {
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .copy {
-      text-align: center;
-      margin-top: 20px;
-      border-top: 1px solid #333;
-      padding-top: 10px;
-      font-size: 13px;
-    }
-
-    /* ===== MOBILE NAV ===== */
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #222;
-        flex-direction: column;
-        text-align: center;
-        display: none;
-        padding: 15px 0;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 12px;
-        border-bottom: 1px solid #333;
-      }
-    }
-  </style>
 </head>
-
 <body>
-
-  <!-- NAVBAR -->
   <header class="navbar">
     <div class="container">
-      <div class="logo">Ecomshop</div>
-      <button class="nav-toggle" id="navToggle">☰</button>
-
-      <div class="nav-links" id="navMenu">
+      <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
+      <button class="nav-toggle">&#9776;</button>
+      <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="product.html">Products</a>
-        <a href="blog.html">Blog</a>
+        <a href="blog.html" class="active">Blog</a>
         <a href="contact.html">Contact</a>
-        <a href="My-Cart.html">My-Cart</a>
-
-        <a href="admin-login.html">Admin-Page</a>
-
-      </div>
+        <a href="My-Cart.html">My Cart</a>
+        <a href="admin-login.html">Admin</a>
+      </nav>
     </div>
   </header>
 
-  <!-- BLOG HERO -->
   <section class="blog-hero">
+    <span class="section-badge" style="background:rgba(200,169,81,0.15);color:#c8a951">Blog</span>
     <h1>Our Blog</h1>
-    <p>Latest fashion trends & shopping tips</p>
+    <p>Latest fashion trends & shopping tips in Pakistan</p>
   </section>
 
-  <!-- BLOG GRID -->
   <section class="blog-container">
-
     <div class="blog-card">
-      <img src="./images/download (3).jpg">
+      <img src="./images/download (3).jpg" alt="Fashion Trends">
       <div class="blog-content">
         <span class="blog-date">14 Jan 2026</span>
         <h3>Latest Fashion Trends 2026</h3>
-        <p>Discover the newest fashion trends taking over the market this year.</p>
+        <p>Discover the newest fashion trends taking over the market this year in Pakistan.</p>
         <a href="#" class="read-btn">Read More</a>
       </div>
     </div>
 
     <div class="blog-card">
-      <img src="./images/download (4).jpg">
+      <img src="./images/download (4).jpg" alt="Online Shopping">
       <div class="blog-content">
         <span class="blog-date">10 Jan 2026</span>
         <h3>Why Online Shopping is Better</h3>
-        <p>Online shopping saves time, money and gives more variety.</p>
+        <p>Online shopping saves time, money and gives more variety with JazzCash payments.</p>
         <a href="online-shopping.html" class="read-btn">Read More</a>
       </div>
     </div>
 
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Quality Products">
       <div class="blog-content">
         <span class="blog-date">05 Jan 2026</span>
         <h3>How to Choose Quality Products</h3>
-        <p>Buying quality products online is easy if you know the right tips.</p>
+        <p>Buying quality products online is easy if you know the right tips and tricks.</p>
         <a href="#" class="read-btn">Read More</a>
       </div>
     </div>
-
   </section>
 
-  <!-- FOOTER -->
-    <footer>
-        <div class="footer-wrap">
-            <div class="footer-col">
-                <h4>About</h4>
-                <p>An E-commerce website is an online platform where people can buy and sell products or services
-                    through the internet. Customers select items, add them to a cart, make payment, and receive the
-                    products at home.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product.html">Shop</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Customer Care</h4>
-                <ul>
-                    <li><a href="contact.html">My Account</a></li>
-                    <li><a href="My-Cart.html">Orders</a></li>
-                    <li><a href="product.html">Wishlist</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Email: info@example.com<br />Phone: +00 123 456</p>
-            </div>
-        </div>
-        <div class="copy">© 2026 E‑Commerce. All rights reserved.</div>
-    </footer>
-
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-col"><h4>About EcomShop</h4><p>Pakistan's trusted online fashion destination with JazzCash payment support.</p></div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul><li><a href="index.html">Home</a></li><li><a href="product.html">Shop</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul><li><a href="contact.html">My Account</a></li><li><a href="My-Cart.html">Orders</a></li><li><a href="product.html">Wishlist</a></li></ul>
+      </div>
+      <div class="footer-col"><h4>Contact</h4><p>Email: info@ecomshop.pk<br>Phone: +92 300 1234567</p></div>
+    </div>
+    <div class="copy">&copy; 2026 EcomShop. All rights reserved.</div>
+  </footer>
 
   <script>
-    document.getElementById("navToggle").onclick = function () {
-      document.getElementById("navMenu").classList.toggle("show");
-    };
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('show');
+    });
   </script>
-
 </body>
-
 </html>

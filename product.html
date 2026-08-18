@@ -1,311 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product</title>
+    <title>Products | EcomShop Pakistan</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .product-wrap {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 22px;
-            justify-content: center;
-            padding: 10px;
-        }
-
-        /* Card */
-        .product-card {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 14px;
-            text-align: center;
-            max-width: 260px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: 0.3s ease;
-            border: 1px solid #f1f1f1;
-            overflow: hidden;
-        }
-
-        /* Hover Effect */
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Image */
-        .product-card img {
-            width: 100%;
-            height: 170px;
-            object-fit: contain;
-            border-radius: 10px;
-            transition: 0.3s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Title */
-        .product-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 12px;
-        }
-
-        /* Price */
-        .product-card p {
-            font-size: 15px;
-            font-weight: 700;
-            color: #2563eb;
-            margin: 6px 0;
-        }
-
-        /* Button */
-        .product-card button {
-            margin-top: 10px;
-            padding: 9px 14px;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        /* Button Hover */
-        .product-card button:hover {
-            background: linear-gradient(135deg, #081c60, #040507);
-            transform: scale(1.05);
-        }
-    </style>
 </head>
-
 <body>
     <header class="navbar">
         <div class="container">
-            <h1 class="logo"><a href="index.html">Ecomshop</a> </h1>
+            <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
             <button class="nav-toggle">&#9776;</button>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="product.html">Products</a>
+                <a href="product.html" class="active">Products</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
                 <a href="My-Cart.html">My Cart</a>
-                <a href="admin-login.html">Admin-Page</a>
+                <a href="admin-login.html">Admin</a>
             </nav>
         </div>
     </header>
 
     <section class="product-sec">
+        <span class="section-badge">Collection</span>
         <h2 class="sec-title">Latest Products</h2>
+        <p class="sec-subtitle">All prices in PKR. Pay securely with JazzCash.</p>
         <div class="product-wrap">
 
-            <!-- ===== All 24 Products ===== -->
             <div class="product-card">
-                <img src="./images/hot_1.png">
+                <img src="./images/hot_1.png" alt="Ladies Purse">
                 <h4>Ladies Purse</h4>
-                <span class="price">$120</span>
-                <button class="add-cart" data-id="101" data-name="Ladies Purse" data-price="120"
-                    data-img="./images/hot_1.png">Add to Cart</button>
+                <span class="price">Rs. 34,200</span>
+                <button class="add-cart" data-id="101" data-name="Ladies Purse" data-price="34200" data-img="./images/hot_1.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/hot_2.png">
+                <img src="./images/hot_2.png" alt="Ladies Dress">
                 <h4>Ladies Dress</h4>
-                <span class="price">$195</span>
-                <button class="add-cart" data-id="102" data-name="Ladies Dress" data-price="195"
-                    data-img="./images/hot_2.png">Add to Cart</button>
+                <span class="price">Rs. 55,575</span>
+                <button class="add-cart" data-id="102" data-name="Ladies Dress" data-price="55575" data-img="./images/hot_2.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/hot_3.png">
+                <img src="./images/hot_3.png" alt="Bag">
                 <h4>Bag</h4>
-                <span class="price">$150</span>
-                <button class="add-cart" data-id="103" data-name="Bag" data-price="150"
-                    data-img="./images/hot_3.png">Add to Cart</button>
+                <span class="price">Rs. 42,750</span>
+                <button class="add-cart" data-id="103" data-name="Bag" data-price="42750" data-img="./images/hot_3.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/hot_4.png">
+                <img src="./images/hot_4.png" alt="Heels">
                 <h4>Heels</h4>
-                <span class="price">$80</span>
-                <button class="add-cart" data-id="104" data-name="Heels" data-price="80"
-                    data-img="./images/hot_4.png">Add to Cart</button>
+                <span class="price">Rs. 22,800</span>
+                <button class="add-cart" data-id="104" data-name="Heels" data-price="22800" data-img="./images/hot_4.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/men_clothing_1.png">
+                <img src="./images/men_clothing_1.png" alt="Coat">
                 <h4>Coat</h4>
-                <span class="price">$90</span>
-                <button class="add-cart" data-id="105" data-name="Coat" data-price="90"
-                    data-img="./images/men_clothing_1.png">Add to Cart</button>
+                <span class="price">Rs. 25,650</span>
+                <button class="add-cart" data-id="105" data-name="Coat" data-price="25650" data-img="./images/men_clothing_1.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/men_clothing_2.png">
+                <img src="./images/men_clothing_2.png" alt="Shirt">
                 <h4>Shirt</h4>
-                <span class="price">$820</span>
-                <button class="add-cart" data-id="106" data-name="Shirt" data-price="820"
-                    data-img="./images/men_clothing_2.png">Add to Cart</button>
+                <span class="price">Rs. 2,33,700</span>
+                <button class="add-cart" data-id="106" data-name="Shirt" data-price="233700" data-img="./images/men_clothing_2.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/men_clothing_4.png">
+                <img src="./images/men_clothing_4.png" alt="Hoodie">
                 <h4>Hoodie</h4>
-                <span class="price">$180</span>
-                <button class="add-cart" data-id="107" data-name="Hoodie" data-price="180"
-                    data-img="./images/men_clothing_4.png">Add to Cart</button>
+                <span class="price">Rs. 51,300</span>
+                <button class="add-cart" data-id="107" data-name="Hoodie" data-price="51300" data-img="./images/men_clothing_4.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product1.png">
+                <img src="./images/product1.png" alt="Jacket">
                 <h4>Jacket</h4>
-                <span class="price">$180</span>
-                <button class="add-cart" data-id="108" data-name="Jacket" data-price="180"
-                    data-img="./images/product1.png">Add to Cart</button>
+                <span class="price">Rs. 51,300</span>
+                <button class="add-cart" data-id="108" data-name="Jacket" data-price="51300" data-img="./images/product1.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product2.png">
+                <img src="./images/product2.png" alt="Travelling Bag">
                 <h4>Travelling Bag</h4>
-                <span class="price">$160</span>
-                <button class="add-cart" data-id="109" data-name="Travelling Bag" data-price="160"
-                    data-img="./images/product2.png">Add to Cart</button>
+                <span class="price">Rs. 45,600</span>
+                <button class="add-cart" data-id="109" data-name="Travelling Bag" data-price="45600" data-img="./images/product2.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product3.png">
+                <img src="./images/product3.png" alt="Dress">
                 <h4>Dress</h4>
-                <span class="price">$150</span>
-                <button class="add-cart" data-id="110" data-name="Dress" data-price="150"
-                    data-img="./images/product3.png">Add to Cart</button>
+                <span class="price">Rs. 42,750</span>
+                <button class="add-cart" data-id="110" data-name="Dress" data-price="42750" data-img="./images/product3.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product4.png">
+                <img src="./images/product4.png" alt="Lady Dress">
                 <h4>Lady Dress</h4>
-                <span class="price">$70</span>
-                <button class="add-cart" data-id="111" data-name="Lady Dress" data-price="70"
-                    data-img="./images/product4.png">Add to Cart</button>
+                <span class="price">Rs. 19,950</span>
+                <button class="add-cart" data-id="111" data-name="Lady Dress" data-price="19950" data-img="./images/product4.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product5.png">
+                <img src="./images/product5.png" alt="Sandal">
                 <h4>Sandal</h4>
-                <span class="price">$180</span>
-                <button class="add-cart" data-id="112" data-name="Sandal" data-price="180"
-                    data-img="./images/product5.png">Add to Cart</button>
+                <span class="price">Rs. 51,300</span>
+                <button class="add-cart" data-id="112" data-name="Sandal" data-price="51300" data-img="./images/product5.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product6.png">
+                <img src="./images/product6.png" alt="Hand Bag">
                 <h4>Hand Bag</h4>
-                <span class="price">$10</span>
-                <button class="add-cart" data-id="113" data-name="Hand Bag" data-price="10"
-                    data-img="./images/product6.png">Add to Cart</button>
+                <span class="price">Rs. 2,850</span>
+                <button class="add-cart" data-id="113" data-name="Hand Bag" data-price="2850" data-img="./images/product6.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product7.png">
+                <img src="./images/product7.png" alt="Watch">
                 <h4>Watch</h4>
-                <span class="price">$1800</span>
-                <button class="add-cart" data-id="114" data-name="Watch" data-price="1800"
-                    data-img="./images/product7.png">Add to Cart</button>
+                <span class="price">Rs. 5,13,000</span>
+                <button class="add-cart" data-id="114" data-name="Watch" data-price="513000" data-img="./images/product7.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product8.png">
+                <img src="./images/product8.png" alt="Shirt">
                 <h4>Shirt</h4>
-                <span class="price">$580</span>
-                <button class="add-cart" data-id="115" data-name="Shirt" data-price="580"
-                    data-img="./images/product8.png">Add to Cart</button>
+                <span class="price">Rs. 1,65,300</span>
+                <button class="add-cart" data-id="115" data-name="Shirt" data-price="165300" data-img="./images/product8.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product9.png">
+                <img src="./images/product9.png" alt="Loafer">
                 <h4>Loafer</h4>
-                <span class="price">$1180</span>
-                <button class="add-cart" data-id="116" data-name="Loafer" data-price="1180"
-                    data-img="./images/product9.png">Add to Cart</button>
+                <span class="price">Rs. 3,36,300</span>
+                <button class="add-cart" data-id="116" data-name="Loafer" data-price="336300" data-img="./images/product9.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product10.png">
+                <img src="./images/product10.png" alt="Shirt">
                 <h4>Shirt</h4>
-                <span class="price">$1280</span>
-                <button class="add-cart" data-id="117" data-name="Shirt" data-price="1280"
-                    data-img="./images/product10.png">Add to Cart</button>
+                <span class="price">Rs. 3,64,800</span>
+                <button class="add-cart" data-id="117" data-name="Shirt" data-price="364800" data-img="./images/product10.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product11.png">
+                <img src="./images/product11.png" alt="Sweater">
                 <h4>Sweater</h4>
-                <span class="price">$5580</span>
-                <button class="add-cart" data-id="118" data-name="Sweater" data-price="5580"
-                    data-img="./images/product11.png">Add to Cart</button>
+                <span class="price">Rs. 15,90,300</span>
+                <button class="add-cart" data-id="118" data-name="Sweater" data-price="1590300" data-img="./images/product11.png">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product12.jpg">
+                <img src="./images/product12.jpg" alt="Shirt">
                 <h4>Shirt</h4>
-                <span class="price">$5580</span>
-                <button class="add-cart" data-id="119" data-name="Shirt" data-price="5580"
-                    data-img="./images/product12.jpg">Add to Cart</button>
+                <span class="price">Rs. 15,90,300</span>
+                <button class="add-cart" data-id="119" data-name="Shirt" data-price="1590300" data-img="./images/product12.jpg">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product13.jpg">
+                <img src="./images/product13.jpg" alt="Watch">
                 <h4>Watch</h4>
-                <span class="price">$3580</span>
-                <button class="add-cart" data-id="120" data-name="Watch" data-price="3580"
-                    data-img="./images/product13.jpg">Add to Cart</button>
+                <span class="price">Rs. 10,20,300</span>
+                <button class="add-cart" data-id="120" data-name="Watch" data-price="1020300" data-img="./images/product13.jpg">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product14.jpg">
+                <img src="./images/product14.jpg" alt="Red Shirt">
                 <h4>Red Shirt</h4>
-                <span class="price">$250</span>
-                <button class="add-cart" data-id="121" data-name="Red Shirt" data-price="250"
-                    data-img="./images/product14.jpg">Add to Cart</button>
+                <span class="price">Rs. 71,250</span>
+                <button class="add-cart" data-id="121" data-name="Red Shirt" data-price="71250" data-img="./images/product14.jpg">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product15.jpg">
+                <img src="./images/product15.jpg" alt="Watch">
                 <h4>Watch</h4>
-                <span class="price">$580</span>
-                <button class="add-cart" data-id="122" data-name="Watch" data-price="580"
-                    data-img="./images/product15.jpg">Add to Cart</button>
+                <span class="price">Rs. 1,65,300</span>
+                <button class="add-cart" data-id="122" data-name="Watch" data-price="165300" data-img="./images/product15.jpg">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product16.jpg">
+                <img src="./images/product16.jpg" alt="Air-Buds">
                 <h4>Air-Buds</h4>
-                <span class="price">$580</span>
-                <button class="add-cart" data-id="123" data-name="Air-Buds" data-price="580"
-                    data-img="./images/product16.jpg">Add to Cart</button>
+                <span class="price">Rs. 1,65,300</span>
+                <button class="add-cart" data-id="123" data-name="Air-Buds" data-price="165300" data-img="./images/product16.jpg">Add to Cart</button>
             </div>
 
             <div class="product-card">
-                <img src="./images/product17.jpg">
+                <img src="./images/product17.jpg" alt="Wallet">
                 <h4>Wallet</h4>
-                <span class="price">$5580</span>
-                <button class="add-cart" data-id="124" data-name="Wallet" data-price="5580"
-                    data-img="./images/product17.jpg">Add to Cart</button>
+                <span class="price">Rs. 15,90,300</span>
+                <button class="add-cart" data-id="124" data-name="Wallet" data-price="1590300" data-img="./images/product17.jpg">Add to Cart</button>
             </div>
 
         </div>
     </section>
+
     <footer>
         <div class="footer-wrap">
             <div class="footer-col">
-                <h4>About</h4>
-                <p>An E-commerce website is an online platform where people can buy and sell products or services
-                    through the internet. Customers select items, add them to a cart, make payment, and receive the
-                    products at home.</p>
+                <h4>About EcomShop</h4>
+                <p>Pakistan's trusted online fashion destination. Shop premium clothing, accessories, and footwear with secure JazzCash payments.</p>
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
@@ -326,48 +224,34 @@
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <p>Email: info@example.com<br />Phone: +00 123 456</p>
+                <p>Email: info@ecomshop.pk<br>Phone: +92 300 1234567<br>Lahore, Pakistan</p>
             </div>
         </div>
-        <div class="copy">© 2026 E‑Commerce. All rights reserved.</div>
+        <div class="copy">&copy; 2026 EcomShop. All rights reserved.</div>
     </footer>
 
-
     <script>
-        let buttons = document.querySelectorAll(".add-cart");
-
-        buttons.forEach(btn => {
+        document.querySelectorAll(".add-cart").forEach(btn => {
             btn.addEventListener("click", () => {
                 let product = {
                     id: btn.dataset.id,
                     name: btn.dataset.name,
-                    price: parseFloat(btn.dataset.price),
+                    price: Number(btn.dataset.price),
                     img: btn.dataset.img,
                     qty: 1
                 };
-
                 let cart = JSON.parse(localStorage.getItem("cart")) || [];
                 let exist = cart.find(item => item.id === product.id);
-
-                if (exist) {
-                    exist.qty += 1;
-                } else {
-                    cart.push(product);
-                }
-
+                if (exist) { exist.qty += 1; } else { cart.push(product); }
                 localStorage.setItem("cart", JSON.stringify(cart));
-                alert(`${product.name} added to cart`);
+                alert(product.name + " added to cart!");
             });
         });
     </script>
     <script>
-        const toggleButton = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        toggleButton.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
         });
     </script>
 </body>
-
 </html>

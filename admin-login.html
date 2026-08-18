@@ -1,195 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login | Ecomshop</title>
+    <title>Admin Login | EcomShop</title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: #222;
-            color: white;
-            padding: 12px 0;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 18px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .nav-toggle {
-            display: none;
-            font-size: 26px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* ===== LOGIN PAGE ===== */
-        body {
-            background: #f6f6f6;
-        }
-
-        .login-wrapper {
-            min-height: 85vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .login-box {
-            background: white;
-            max-width: 360px;
-            width: 100%;
-            padding: 35px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .login-box h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
-
-        .login-box input:focus {
-            outline: none;
-            border-color: black;
-        }
-
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            background: black;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .login-box button:hover {
-            background: #333;
-        }
-
-        /* ===== MOBILE ===== */
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: #222;
-                flex-direction: column;
-                text-align: center;
-                display: none;
-                padding: 15px 0;
-            }
-
-            .nav-links.show {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 12px;
-                border-bottom: 1px solid #333;
-            }
-        }
-    </style>
 </head>
-
 <body>
-
-    <!-- NAVBAR -->
     <header class="navbar">
         <div class="container">
-            <div class="logo">Ecomshop</div>
-
-            <button class="nav-toggle" id="navToggle">☰</button>
-
-            <div class="nav-links" id="navMenu">
+            <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
+            <button class="nav-toggle">&#9776;</button>
+            <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="product.html">Products</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
-                <a href="My-Cart.html">My-Cart</a>
-
-                <a href="admin-login.html">Admin-Page</a>
-
-            </div>
+                <a href="My-Cart.html">My Cart</a>
+                <a href="admin-login.html" class="active">Admin</a>
+            </nav>
         </div>
     </header>
 
-    <!-- LOGIN -->
     <section class="login-wrapper">
         <div class="login-box">
             <h2>Admin Login</h2>
-
             <input type="text" id="username" placeholder="Username" required>
             <input type="password" id="password" placeholder="Password" required>
-
             <button onclick="login()">Login</button>
         </div>
     </section>
 
-    <!-- LOGIN SCRIPT -->
     <script>
-        document.getElementById("navToggle").onclick = function () {
-            document.getElementById("navMenu").classList.toggle("show");
-        };
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
 
         function login() {
-            const user = document.getElementById("username").value;
-            const pass = document.getElementById("password").value;
+            const user = document.getElementById("username").value.trim();
+            const pass = document.getElementById("password").value.trim();
+
+            if (!user || !pass) {
+                alert("Please fill in all fields");
+                return;
+            }
 
             if (user === "admin" && pass === "E-HUB") {
                 localStorage.setItem("adminLogged", "true");
                 window.location.href = "admin.html";
             } else {
-                alert("❌ Invalid login");
+                alert("Invalid credentials. Use admin / E-HUB");
             }
         }
     </script>
-
 </body>
-
 </html>

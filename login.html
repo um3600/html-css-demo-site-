@@ -2,121 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Ecomshop</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background: #111;
-            padding: 30px 40px;
-            border-radius: 10px;
-            color: #fff;
-            width: 300px;
-            text-align: center;
-        }
-
-        .login-container h2 {
-            margin-bottom: 20px;
-        }
-
-        .login-container input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-        }
-
-        .login-container button {
-            width: 100%;
-            padding: 10px;
-            background: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .login-container button:hover {
-            background: #45a049;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | EcomShop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
+            <button class="nav-toggle">&#9776;</button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="My-Cart.html">My Cart</a>
+                <a href="admin-login.html">Admin</a>
+            </nav>
+        </div>
+    </header>
 
-<div class="login-container">
-    <h2>Login to Ecomshop</h2>
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <button onclick="loginUser()">Login</button>
-</div>
+    <section class="login-wrapper">
+        <div class="login-box">
+            <h2>Login to EcomShop</h2>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <button onclick="loginUser()">Login</button>
+        </div>
+    </section>
 
-<script>
-function loginUser() {
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
 
-    if (!name || !email) {
-        alert("Please enter both name and email");
-        return;
-    }
+        function loginUser() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
 
-    // Save user info in localStorage
-    localStorage.setItem("userLogged", "true");
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userEmail", email);
+            if (!name || !email) {
+                alert("Please enter both name and email");
+                return;
+            }
 
-    alert("Login successful!");
-    window.location.href = "My-Cart.html"; // redirect after login
-}
-</script>
-<script>
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-const email = localStorage.getItem("userEmail");
-const name = localStorage.getItem("userName");
+            localStorage.setItem("userLogged", "true");
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", email);
 
-if(!users.some(u => u.email === email)){
-    users.push({name, email});
-    localStorage.setItem("users", JSON.stringify(users));
-}
-</script>
-<script>
-    function loginUser() {
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
+            // Track all logged-in users
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            if (!users.some(u => u.email === email)) {
+                users.push({ name, email });
+                localStorage.setItem("users", JSON.stringify(users));
+            }
 
-    if(!name || !email){
-        alert("Enter name and email");
-        return;
-    }
-
-    // save login info
-    localStorage.setItem("userLogged", "true");
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userEmail", email);
-
-    // ✅ Track all logged-in users
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    if(!users.some(u => u.email === email)){
-        users.push({name, email});
-        localStorage.setItem("users", JSON.stringify(users));
-    }
-
-    alert("Login successful");
-    window.location.href = "My-Cart.html";
-}
-
-</script>
+            alert("Login successful! Welcome, " + name);
+            window.location.href = "My-Cart.html";
+        }
+    </script>
 </body>
 </html>

@@ -1,98 +1,50 @@
-# EcomShop - Full Stack E-Commerce Platform
+# EcomShop - Premium Fashion Store
 
-Professional e-commerce store built with the MERN stack (MongoDB, Express, React, Node.js). All prices in PKR with JazzCash & COD payment support.
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React + Vite + Tailwind CSS v4 |
-| Backend | Node.js + Express.js |
-| Database | MongoDB + Mongoose |
-| Auth | JWT + bcrypt |
-| Payments | JazzCash (simulated) + Cash on Delivery |
-
-## Quick Start
-
-### Prerequisites
-- Node.js (v18+)
-- MongoDB (local or Atlas)
-
-### Setup
-
-```bash
-# Install all dependencies
-npm run install-all
-
-# Configure environment
-cd server
-# Edit .env with your MongoDB URI
-
-# Seed the database with 24 products
-npm run seed
-
-# Start development (server + client)
-npm run dev
-```
-
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000
-
-### Admin Login
-- Email: `admin@ecomshop.pk`
-- Password: `admin123`
+A professional, mobile-responsive e-commerce website built with HTML, CSS, and JavaScript. Features JazzCash payment integration with prices in PKR (Pakistani Rupees).
 
 ## Features
 
-### Customer
-- Browse products with category filters, search, and sorting
-- Product detail pages with ratings
-- Shopping cart with quantity management
-- JazzCash mobile payment integration
-- Cash on Delivery option
-- Order tracking and history
-- User registration and login
-- Responsive design (mobile, tablet, desktop)
+- **Modern UI/UX** - Clean, professional design with smooth animations
+- **Mobile Responsive** - Fully responsive across all devices
+- **JazzCash Integration** - Pay securely with JazzCash mobile wallet
+- **PKR Pricing** - All prices displayed in Pakistani Rupees
+- **Dark Mode** - Toggle between light and dark themes
+- **Admin Dashboard** - Full CRUD management for products, orders, and users
+- **Sales Analytics** - Visual sales chart and order export (CSV)
+- **User Authentication** - Login system for users and admin
 
-### Admin Dashboard
-- Sales overview with charts (monthly revenue, category stats)
-- Order management (view, update status)
-- Product CRUD (add, edit, delete products)
-- User management
+## Pages
 
-## Project Structure
+| Page | Description |
+|------|-------------|
+| `index.html` | Homepage with hero, categories, featured products |
+| `product.html` | Full product catalog (24 products) |
+| `My-Cart.html` | Shopping cart with quantity controls |
+| `checkout.html` | JazzCash payment checkout with PIN modal |
+| `success.html` | Order confirmation with printable receipt |
+| `admin-login.html` | Admin login (admin / E-HUB) |
+| `admin.html` | Admin dashboard with orders, products, users, charts |
+| `login.html` | User login |
+| `blog.html` | Fashion blog |
+| `contact.html` | Contact form |
+| `online-shopping.html` | Online shopping guide article |
 
-```
-E-COm/
-├── client/          # React frontend
-│   ├── src/
-│   │   ├── components/   # Navbar, Footer, ProductCard
-│   │   ├── pages/        # 13 page components
-│   │   ├── context/      # Auth + Cart state
-│   │   └── utils/        # API client + helpers
-├── server/          # Node.js backend
-│   ├── models/      # User, Product, Order, Category
-│   ├── routes/      # API routes
-│   ├── controllers/ # Business logic
-│   ├── middleware/   # JWT auth + error handling
-│   ├── config/      # DB connection
-│   └── seed.js      # Database seeder
-├── images/          # Product images
-└── package.json     # Root scripts
-```
+## Admin Credentials
 
-## API Endpoints
+- **Username:** admin
+- **Password:** E-HUB
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/auth/register | Register user |
-| POST | /api/auth/login | Login |
-| GET | /api/products | List products (with filters) |
-| GET | /api/products/:id | Product detail |
-| POST | /api/orders | Create order |
-| GET | /api/orders/my | My orders |
-| GET | /api/orders/dashboard | Admin stats |
+## Tech Stack
 
-## Pricing
+- HTML5
+- CSS3 (Custom Properties, Grid, Flexbox)
+- Vanilla JavaScript
+- localStorage for data persistence
 
-All prices in Pakistani Rupees (PKR). Free shipping on orders above Rs. 5,000. 5% sales tax applied.
+## How to Run
+
+Simply open `index.html` in any modern web browser.
+
+## Author
+
+**Umar** - [GitHub](https://github.com/um3600)

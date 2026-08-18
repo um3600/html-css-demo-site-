@@ -1,400 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Cart | Ecomshop</title>
+  <title>My Cart | EcomShop</title>
   <link rel="stylesheet" href="style.css">
-
   <style>
-    /* ===== NAVBAR ===== */
-    .navbar {
-      background: #222;
-      color: white;
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .nav-toggle {
-      display: none;
-      font-size: 26px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* ===== CART ===== */
     .cart-wrapper {
       padding: 60px 8%;
-      background: #f6f6f6;
-      min-height: 80vh;
+      min-height: 60vh;
     }
-
     .cart-title {
-      font-size: 32px;
-      margin-bottom: 25px;
       text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 38px);
+      margin-bottom: 30px;
     }
-
     .cart-item {
-      background: white;
+      background: #fff;
       display: grid;
       grid-template-columns: 90px 1fr auto auto auto;
       align-items: center;
-      gap: 15px;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      gap: 18px;
+      padding: 18px;
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
     }
-
     .cart-img {
       width: 90px;
       height: 90px;
       object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .product-name {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-
-    .product-price {
-      font-size: 14px;
-      color: #666;
-    }
-
-    .cart-qty {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .cart-qty button {
-      width: 28px;
-      height: 28px;
-      border: none;
-      background: #222;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .cart-total {
-      font-weight: bold;
-    }
-
-    .remove-btn {
-      background: red;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* ===== SUMMARY ===== */
-    .cart-summary {
-      background: white;
-      margin-top: 25px;
-      padding: 25px;
       border-radius: 8px;
+    }
+    .product-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .product-price { font-size: 14px; color: var(--text-light); }
+    .cart-qty { display: flex; align-items: center; gap: 8px; }
+    .cart-qty button {
+      width: 32px; height: 32px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .cart-qty button:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .cart-total { font-weight: 700; color: var(--accent-hover); font-size: 16px; }
+    .remove-btn {
+      background: #e74c3c; color: #fff;
+      padding: 8px 16px; border-radius: 6px;
+    }
+    .remove-btn:hover { background: #c0392b; }
+    .cart-summary {
+      background: #fff;
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: var(--radius);
       max-width: 420px;
       margin-left: auto;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
     }
-
-    .cart-summary h2 {
-      margin-bottom: 15px;
-    }
-
+    .cart-summary h2 { font-family: 'Playfair Display', serif; margin-bottom: 16px; font-size: 22px; }
+    .cart-summary p { margin: 8px 0; font-size: 15px; }
     .checkout-btn {
       width: 100%;
-      padding: 12px;
-      background: black;
-      color: white;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
       border: none;
-      border-radius: 6px;
-      margin-top: 15px;
+      border-radius: 50px;
+      margin-top: 16px;
       cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
     }
-
-    .checkout-btn:hover {
-      background: #333;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #111;
-      color: #ccc;
-      padding: 50px 8% 20px;
-    }
-
-    .footer-wrap {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-    }
-
-    .footer-col h4 {
-      color: white;
-      margin-bottom: 15px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-col a {
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .copy {
-      text-align: center;
-      margin-top: 20px;
-      border-top: 1px solid #333;
-      padding-top: 10px;
-      font-size: 13px;
-    }
-
-    /* ===== MOBILE ===== */
+    .checkout-btn:hover { background: var(--accent); color: var(--primary); }
+    .empty-cart { text-align: center; padding: 60px 20px; color: var(--text-light); font-size: 18px; }
     @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #222;
-        flex-direction: column;
-        text-align: center;
-        display: none;
-        padding: 15px 0;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 12px;
-        border-bottom: 1px solid #333;
-      }
-
-      .cart-item {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .cart-img {
-        margin: 0 auto;
-      }
-
-      .cart-summary {
-        max-width: 100%;
-      }
+      .cart-item { grid-template-columns: 1fr; text-align: center; }
+      .cart-img { margin: 0 auto; }
+      .cart-summary { max-width: 100%; }
     }
   </style>
 </head>
-
 <body>
-
-  <!-- NAVBAR -->
-  <!-- NAVBAR -->
   <header class="navbar">
     <div class="container">
-      <div class="logo">Ecomshop</div>
-
-      <button class="nav-toggle" id="navToggle">☰</button>
-
-      <div class="nav-links" id="navMenu">
+      <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
+      <button class="nav-toggle">&#9776;</button>
+      <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="product.html">Products</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
-        <a href="My-Cart.html">My-Cart</a>
-
-        <a href="admin-login.html">Admin-Page</a>
-
-      </div>
+        <a href="My-Cart.html" class="active">My Cart</a>
+        <a href="admin-login.html">Admin</a>
+      </nav>
     </div>
   </header>
-  <!-- CART -->
+
   <section class="cart-wrapper">
     <h1 class="cart-title">My Cart</h1>
-
     <div id="cart-items"></div>
-
     <div class="cart-summary">
       <h2>Order Summary</h2>
-      <p>Subtotal: <span id="subtotal">$0</span></p>
-      <p>Shipping: <span>Free</span></p>
-      <h3>Total: <span id="total">$0</span></h3>
-
+      <p>Subtotal: <strong id="subtotal">Rs. 0</strong></p>
+      <p>Shipping: <strong style="color:#27ae60">Free</strong></p>
+      <hr style="border:none;border-top:1px solid #eee;margin:12px 0">
+      <p style="font-size:20px">Total: <strong id="total" style="color:var(--accent-hover)">Rs. 0</strong></p>
       <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
     </div>
   </section>
 
-    <footer>
-        <div class="footer-wrap">
-            <div class="footer-col">
-                <h4>About</h4>
-                <p>An E-commerce website is an online platform where people can buy and sell products or services
-                    through the internet. Customers select items, add them to a cart, make payment, and receive the
-                    products at home.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product.html">Shop</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Customer Care</h4>
-                <ul>
-                    <li><a href="contact.html">My Account</a></li>
-                    <li><a href="My-Cart.html">Orders</a></li>
-                    <li><a href="product.html">Wishlist</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Email: info@example.com<br />Phone: +00 123 456</p>
-            </div>
-        </div>
-        <div class="copy">© 2026 E‑Commerce. All rights reserved.</div>
-    </footer>
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-col"><h4>About EcomShop</h4><p>Pakistan's trusted online fashion destination.</p></div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul><li><a href="index.html">Home</a></li><li><a href="product.html">Shop</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul><li><a href="contact.html">My Account</a></li><li><a href="My-Cart.html">Orders</a></li><li><a href="product.html">Wishlist</a></li></ul>
+      </div>
+      <div class="footer-col"><h4>Contact</h4><p>Email: info@ecomshop.pk<br>Phone: +92 300 1234567</p></div>
+    </div>
+    <div class="copy">&copy; 2026 EcomShop. All rights reserved.</div>
+  </footer>
 
-
-  <!-- NAV SCRIPT -->
   <script>
-    document.getElementById("navToggle").onclick = function () {
-      document.getElementById("navMenu").classList.toggle("show");
-    };
-  </script>
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('show');
+    });
 
-  <!-- CART SCRIPT -->
-  <script>
+    if (localStorage.getItem("userLogged") !== "true") {
+      alert("You must login first!");
+      window.location.href = "login.html";
+    }
+
     let cartBox = document.getElementById("cart-items");
     let subtotalBox = document.getElementById("subtotal");
     let totalBox = document.getElementById("total");
-
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function formatPKR(n) { return "Rs. " + Number(n).toLocaleString("en-PK"); }
 
     function renderCart() {
       cartBox.innerHTML = "";
       let total = 0;
-
       if (cart.length === 0) {
-        cartBox.innerHTML = "<p style='text-align:center'>Your cart is empty</p>";
-        subtotalBox.innerText = "$0";
-        totalBox.innerText = "$0";
+        cartBox.innerHTML = '<div class="empty-cart"><p>Your cart is empty. <a href="product.html" style="color:var(--accent-hover);text-decoration:underline">Start Shopping</a></p></div>';
+        subtotalBox.innerText = formatPKR(0);
+        totalBox.innerText = formatPKR(0);
         return;
       }
-
       cart.forEach((item, index) => {
         let itemTotal = item.price * item.qty;
         total += itemTotal;
-
         cartBox.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.img}" class="cart-img">
-
-        <div>
-          <h3 class="product-name">${item.name}</h3>
-          <p class="product-price">$${item.price}</p>
-        </div>
-
-        <div class="cart-qty">
-          <button onclick="changeQty(${index}, -1)">-</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty(${index}, 1)">+</button>
-        </div>
-
-        <p class="cart-total">$${itemTotal}</p>
-
-        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-      </div>
-    `;
+          <div class="cart-item">
+            <img src="${item.img}" class="cart-img" alt="${item.name}">
+            <div>
+              <h3 class="product-name">${item.name}</h3>
+              <p class="product-price">${formatPKR(item.price)} each</p>
+            </div>
+            <div class="cart-qty">
+              <button onclick="changeQty(${index}, -1)">-</button>
+              <span style="font-weight:600;min-width:24px;text-align:center">${item.qty}</span>
+              <button onclick="changeQty(${index}, 1)">+</button>
+            </div>
+            <p class="cart-total">${formatPKR(itemTotal)}</p>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          </div>`;
       });
-
-      subtotalBox.innerText = "$" + total;
-      totalBox.innerText = "$" + total;
+      subtotalBox.innerText = formatPKR(total);
+      totalBox.innerText = formatPKR(total);
     }
 
-    function changeQty(index, value) {
-      cart[index].qty += value;
-      if (cart[index].qty < 1) cart[index].qty = 1;
-
+    function changeQty(i, v) {
+      cart[i].qty += v;
+      if (cart[i].qty < 1) cart[i].qty = 1;
       localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
     }
 
-    function removeItem(index) {
-      cart.splice(index, 1);
+    function removeItem(i) {
+      cart.splice(i, 1);
       localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
     }
 
     function goToCheckout() {
-      if (cart.length === 0) {
-        alert("❌ Your cart is empty.");
-        return;
-      }
-
-      let totalAmount = totalBox.innerText.replace("$", "");
-      localStorage.setItem("checkoutTotal", totalAmount);
+      if (cart.length === 0) { alert("Your cart is empty!"); return; }
+      let total = 0;
+      cart.forEach(item => total += item.price * item.qty);
+      localStorage.setItem("checkoutTotal", total);
       window.location.href = "checkout.html";
     }
 
     renderCart();
   </script>
-<script>
-  if(localStorage.getItem("userLogged") !== "true"){
-    alert("You must login first!");
-    window.location.href = "login.html";
-}
-
-</script>
 </body>
-
 </html>

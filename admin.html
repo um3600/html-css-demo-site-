@@ -1,523 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard | EcomShop</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        .admin-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .admin-tabs { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+        .admin-tabs button {
+            padding: 10px 24px; border-radius: 50px; font-weight: 600;
+            background: #eee; color: #333; border: none; cursor: pointer;
+            font-family: 'Inter', sans-serif; transition: var(--transition);
         }
-
-        /* Navbar */
-        .navbar {
-            background: #111;
-            color: #fff;
-            padding: 10px 20px;
-            position: relative;
-            z-index: 1000;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar .logo a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* Nav links */
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        /* Toggle button */
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        /* Admin title */
-        .admin-title {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 28px;
-        }
-
-        /* Stats cards */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .stats .card {
-            background: #222;
-            color: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            text-align: center;
-            min-width: 150px;
-        }
-
-        /* Buttons */
-        button {
-            padding: 10px 20px;
-            margin: 10px 5px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-
-        .danger-btn {
-            background: #e74c3c;
-            color: #fff;
-        }
-
-        .danger-btn:hover {
-            background: #c0392b;
-        }
-
-        button:hover:not(.danger-btn) {
-            background: #4caf50;
-            color: #fff;
-        }
-
-        /* Canvas chart */
-        #salesChart {
-            display: block;
-            margin: 20px auto;
-            background: #fff;
-            border-radius: 8px;
-            max-width: 95%;
-        }
-
-        /* Orders table */
-        table {
-            width: 95%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-
-        table th,
-        table td {
-            border: 1px solid #ccc;
-            padding: 8px 10px;
-            text-align: center;
-        }
-
-        table th {
-            background: #222;
-            color: #fff;
-        }
-
-        table td {
-            background: #333;
-            color: #fff;
-        }
-
-        table tr:nth-child(even) td {
-            background: #2a2a2a;
-        }
-
-        /* Responsive navbar */
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                gap: 10px;
-                background: #111;
-                width: 100%;
-                margin-top: 10px;
-                padding: 10px 0;
-            }
-
-            .nav-links.show {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 8px 20px;
-                border-top: 1px solid #222;
-            }
-        }
-
-        /* Responsive stats & table */
-        @media (max-width: 768px) {
-            .stats {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            table {
-                font-size: 12px;
-            }
-
-            #salesChart {
-                height: 150px;
-            }
-        }
-
-        .user-info {
-            background: #222;
-            color: #fff;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 900px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .user-info h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 5px;
-        }
-
-        .users-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .user-card {
-            background: #333;
-            padding: 10px 15px;
-            border-radius: 8px;
-            flex: 1 1 200px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s;
-        }
-
-        .user-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .user-card p {
-            margin: 5px 0;
-            font-size: 14px;
-            word-break: break-word;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .users-container {
-                flex-direction: column;
-            }
-        }
+        .admin-tabs button.active { background: var(--primary); color: #fff; }
+        .admin-tabs button:hover:not(.active) { background: var(--accent); color: var(--primary); }
+        .tab-content { display: none; width: 95%; margin: 0 auto; }
+        .tab-content.active { display: block; }
+        .product-form { background: var(--card-bg); padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); max-width: 500px; margin: 0 auto 24px; }
+        .product-form h3 { font-family: 'Playfair Display', serif; margin-bottom: 16px; }
+        .product-form input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; background: var(--bg); }
+        .product-form input:focus { outline: none; border-color: var(--accent); }
+        .product-form button { width: 100%; padding: 12px; }
+        .admin-product-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+        .admin-p-card { background: var(--card-bg); border-radius: var(--radius); padding: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .admin-p-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+        .admin-p-card h4 { font-size: 16px; margin-bottom: 4px; }
+        .admin-p-card p { color: var(--accent-hover); font-weight: 700; margin-bottom: 10px; }
+        .admin-p-card .card-actions { display: flex; gap: 8px; }
+        .admin-p-card .card-actions button { flex: 1; padding: 8px; font-size: 13px; border-radius: 6px; }
+        .edit-btn { background: #3498db !important; color: #fff !important; }
+        .edit-btn:hover { background: #2980b9 !important; }
+        .delete-btn { background: #e74c3c !important; color: #fff !important; }
+        .delete-btn:hover { background: #c0392b !important; }
+        .order-status-btn { font-size: 12px; padding: 4px 10px; border-radius: 4px; cursor: pointer; }
+        .status-paid { background: #27ae60; color: #fff; border: none; }
+        .status-pending { background: #f39c12; color: #fff; border: none; }
+        .status-cancelled { background: #e74c3c; color: #fff; border: none; }
     </style>
-
 </head>
-
 <body>
-    <!-- Navbar -->
     <header class="navbar">
         <div class="container">
-            <h1 class="logo"><a href="index.html">Ecomshop</a></h1>
-
-            <!-- Toggle button for mobile -->
-            <button class="nav-toggle" aria-label="Toggle Navigation">&#9776;</button>
-
+            <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
+            <button class="nav-toggle">&#9776;</button>
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="product.html">Products</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
                 <a href="My-Cart.html">My Cart</a>
-                <a href="admin-login.html">Admin-Page</a>
+                <a href="admin-login.html" class="active">Admin</a>
             </nav>
         </div>
     </header>
 
     <script>
         if (localStorage.getItem("adminLogged") !== "true") {
-            alert("Unauthorized Access");
+            alert("Unauthorized Access. Please login as admin.");
             window.location.href = "admin-login.html";
         }
     </script>
-    <h1 class="admin-title">📊 Admin Dashboard</h1>
+
+    <h1 class="admin-title">Admin Dashboard</h1>
 
     <div class="stats">
-        <div class="card">
-            <h3>Total Orders</h3>
-            <p id="totalOrders">0</p>
-        </div>
-        <div class="card">
-            <h3>Total Sales</h3>
-            <p>$<span id="totalSales">0</span></p>
-        </div>
-        <!-- <div class="card">          -->
-        <!-- </div></div> -->
-
+        <div class="card"><h3>Total Orders</h3><p id="totalOrders">0</p></div>
+        <div class="card"><h3>Total Revenue</h3><p id="totalSales">Rs. 0</p></div>
+        <div class="card"><h3>Products</h3><p id="totalProducts">0</p></div>
+        <div class="card"><h3>Users</h3><p id="totalUsers">0</p></div>
     </div>
 
-    <button onclick="clearOrders()" class="danger-btn">❌ Clear All Orders</button>
-    <button onclick="clearCart()">🛒 Clear User Cart</button>
-    <button onclick="logout()">Logout</button>
-
-    <canvas id="salesChart" height="100"></canvas>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Account</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="orderTable"></tbody>
-    </table>
-    <!-- <div class="user-info">
-        <h3>Logged-in Users</h3>
-        <div class="users-list">
-            <p id="userNames">Names: </p>
-            <p id="userEmails">Emails: </p>
-        </div>
-    </div> -->
-     <div class="user-info">
-        <h3>Logged-in Users</h3>
-        <div id="usersContainer" class="users-container"></div>
+    <div class="admin-actions">
+        <button onclick="clearOrders()" class="danger-btn">Clear All Orders</button>
+        <button onclick="clearCart()">Clear User Cart</button>
+        <button onclick="exportOrders()">Export Orders</button>
+        <button onclick="logout()">Logout</button>
     </div>
-<!--
+
+    <div class="admin-tabs">
+        <button class="active" onclick="switchTab('orders')">Orders</button>
+        <button onclick="switchTab('products')">Products</button>
+        <button onclick="switchTab('users')">Users</button>
+        <button onclick="switchTab('chart')">Sales Chart</button>
+    </div>
+
+    <!-- Orders Tab -->
+    <div class="tab-content active" id="tab-orders">
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>JazzCash Number</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="orderTable"></tbody>
+        </table>
+    </div>
+
+    <!-- Products Tab -->
+    <div class="tab-content" id="tab-products">
+        <div class="product-form">
+            <h3 id="formTitle">Add New Product</h3>
+            <input type="hidden" id="editId" value="">
+            <input type="text" id="pName" placeholder="Product Name">
+            <input type="number" id="pPrice" placeholder="Price in PKR">
+            <input type="text" id="pImg" placeholder="Image URL (e.g. ./images/product1.png)">
+            <button onclick="saveProduct()">Save Product</button>
+            <button onclick="resetForm()" style="background:#eee;color:#333;margin-top:6px">Cancel</button>
+        </div>
+        <div class="admin-product-list" id="adminProducts"></div>
+    </div>
+
+    <!-- Users Tab -->
+    <div class="tab-content" id="tab-users">
+        <div class="user-info">
+            <h3>Logged-in Users</h3>
+            <div id="usersContainer" class="users-container"></div>
+        </div>
+    </div>
+
+    <!-- Chart Tab -->
+    <div class="tab-content" id="tab-chart">
+        <canvas id="salesChart" height="120"></canvas>
+    </div>
+
     <script>
-        // Load orders from localStorage
-        let orders = JSON.parse(localStorage.getItem("orders")) || [];
-        const table = document.getElementById("orderTable");
+    window.onload = function() {
+        loadOrders();
+        loadProducts();
+        loadUsers();
+        loadStats();
+        setupNav();
+    };
 
-        // Calculate total sales
+    function formatPKR(n) { return "Rs. " + Number(n).toLocaleString("en-PK"); }
+
+    function setupNav() {
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+    }
+
+    /* ===== TABS ===== */
+    function switchTab(name) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab-' + name).classList.add('active');
+        event.target.classList.add('active');
+        if (name === 'chart') drawChart();
+    }
+
+    /* ===== STATS ===== */
+    function loadStats() {
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        let products = JSON.parse(localStorage.getItem("adminProducts")) || getDefaultProducts();
+        let users = JSON.parse(localStorage.getItem("users")) || [];
         let totalSales = 0;
         orders.forEach(o => totalSales += Number(o.amount));
 
-        // Update stats
         document.getElementById("totalOrders").innerText = orders.length;
-        document.getElementById("totalSales").innerText = totalSales;
+        document.getElementById("totalSales").innerText = formatPKR(totalSales);
+        document.getElementById("totalProducts").innerText = products.length;
+        document.getElementById("totalUsers").innerText = users.length;
+    }
 
-        // Display orders in table
+    /* ===== ORDERS ===== */
+    function loadOrders() {
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const table = document.getElementById("orderTable");
+        table.innerHTML = "";
+
         if (orders.length === 0) {
-            table.innerHTML = "<tr><td colspan='6'>No Orders</td></tr>";
-        } else {
-            orders.forEach(o => {
-                table.innerHTML += `
-<tr>
-  <td>${o.orderId}</td>
-  <td>${o.name}</td>
-  <td>${o.email}</td>
-  <td>${o.account}</td>
-  <td>$${o.amount}</td>
-  <td>${o.status}</td>
-</tr>
-`;
-            });
+            table.innerHTML = '<tr><td colspan="8" style="padding:20px;color:#999">No orders yet</td></tr>';
+            return;
         }
 
-        // Clear all orders
-        function clearOrders() {
-            if (confirm("Delete all orders?")) {
-                localStorage.removeItem("orders");
-                location.reload();
-            }
-        }
-
-        // Clear user cart
-        function clearCart() {
-            localStorage.removeItem("cart");
-            alert("Cart cleared");
-        }
-
-        // Logout
-        function logout() {
-            localStorage.removeItem("adminLogged");
-            window.location.href = "admin-login.html";
-        }
-
-        // Sales Chart
-        const canvas = document.getElementById("salesChart");
-        const ctx = canvas.getContext("2d");
-
-        const sales = orders.map(o => Number(o.amount));
-        const max = Math.max(...sales, 100);
-
-        ctx.fillStyle = "#eee";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        sales.forEach((val, i) => {
-            const barHeight = (val / max) * canvas.height;
-            ctx.fillStyle = "#4CAF50";
-            ctx.fillRect(i * 50 + 30, canvas.height - barHeight, 30, barHeight);
-        });
-    </script>
-    <script>
-        const toggleButton = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        toggleButton.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-        });
-    </script>
-    <script>
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-        const email = document.getElementById("email").value.trim();
-        const name = document.getElementById("name").value.trim();
-
-        if (!users.some(u => u.email === email)) {
-            users.push({ name, email });
-            localStorage.setItem("users", JSON.stringify(users));
-        }
-
-    </script>
-    <script>
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const usersContainer = document.getElementById("usersContainer");
-        usersContainer.innerHTML = ""; // clear old content
-
-        if (users.length === 0) {
-            usersContainer.innerHTML = "<p>No users logged in yet</p>";
-        } else {
-            users.forEach(user => {
-                const card = document.createElement("div");
-                card.classList.add("user-card");
-                card.innerHTML = `<p><strong>Name:</strong> ${user.name}</p>
-                          <p><strong>Email:</strong> ${user.email}</p>`;
-                usersContainer.appendChild(card);
-            });
-        }
-
-    </script> -->
-<script>
-window.onload = function() {
-    /* ------------------ ORDERS + STATS ------------------ */
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    const table = document.getElementById("orderTable");
-    table.innerHTML = ""; // clear old rows
-
-    // Calculate total sales
-    let totalSales = 0;
-    orders.forEach(o => totalSales += Number(o.amount));
-    document.getElementById("totalOrders").innerText = orders.length;
-    document.getElementById("totalSales").innerText = totalSales;
-
-    // Display orders in table
-    if (orders.length === 0) {
-        table.innerHTML = "<tr><td colspan='6'>No Orders</td></tr>";
-    } else {
-        orders.forEach(o => {
+        orders.forEach((o, i) => {
+            const statusClass = o.status === 'Paid' ? 'status-paid' : o.status === 'Pending' ? 'status-pending' : 'status-cancelled';
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${o.orderId}</td>
                 <td>${o.name}</td>
                 <td>${o.email}</td>
                 <td>${o.account}</td>
-                <td>$${o.amount}</td>
-                <td>${o.status}</td>
+                <td>${formatPKR(o.amount)}</td>
+                <td>${o.method || 'N/A'}</td>
+                <td><button class="order-status-btn ${statusClass}" onclick="toggleStatus(${i})">${o.status}</button></td>
+                <td><button class="delete-btn" onclick="deleteOrder(${i})" style="padding:4px 10px;font-size:12px;border-radius:4px">Delete</button></td>
             `;
             table.appendChild(row);
         });
     }
 
-    // ------------------ SALES CHART ------------------
-    const canvas = document.getElementById("salesChart");
-    const ctx = canvas.getContext("2d");
+    function toggleStatus(i) {
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const states = ["Paid", "Pending", "Cancelled"];
+        const current = states.indexOf(orders[i].status);
+        orders[i].status = states[(current + 1) % states.length];
+        localStorage.setItem("orders", JSON.stringify(orders));
+        loadOrders();
+        loadStats();
+    }
 
-    const sales = orders.map(o => Number(o.amount));
-    const max = Math.max(...sales, 100);
+    function deleteOrder(i) {
+        if (!confirm("Delete this order?")) return;
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.splice(i, 1);
+        localStorage.setItem("orders", JSON.stringify(orders));
+        loadOrders();
+        loadStats();
+    }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#eee";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    function clearOrders() {
+        if (confirm("Delete ALL orders?")) {
+            localStorage.removeItem("orders");
+            loadOrders();
+            loadStats();
+            drawChart();
+        }
+    }
 
-    sales.forEach((val, i) => {
-        const barHeight = (val / max) * canvas.height;
-        ctx.fillStyle = "#4CAF50";
-        ctx.fillRect(i * 50 + 30, canvas.height - barHeight, 30, barHeight);
-    });
+    function clearCart() {
+        localStorage.removeItem("cart");
+        alert("User cart cleared!");
+    }
 
-    /* ------------------ LOGGED-IN USERS ------------------ */
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const usersContainer = document.getElementById("usersContainer");
-    usersContainer.innerHTML = "";
+    function exportOrders() {
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        if (orders.length === 0) { alert("No orders to export"); return; }
+        let csv = "Order ID,Name,Email,Account,Amount,Method,Status\n";
+        orders.forEach(o => {
+            csv += `${o.orderId},${o.name},${o.email},${o.account},${o.amount},${o.method || ''},${o.status}\n`;
+        });
+        const blob = new Blob([csv], { type: "text/csv" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "ecomshop-orders.csv";
+        a.click();
+    }
 
-    if(users.length === 0){
-        usersContainer.innerHTML = "<p>No users logged in yet</p>";
-    } else {
-        users.forEach(user => {
-            const card = document.createElement("div");
-            card.classList.add("user-card");
-            card.innerHTML = `
-                <p><strong>Name:</strong> ${user.name}</p>
-                <p><strong>Email:</strong> ${user.email}</p>
-            `;
-            usersContainer.appendChild(card);
+    /* ===== PRODUCTS CRUD ===== */
+    function getDefaultProducts() {
+        return [
+            { id: 101, name: "Ladies Purse", price: 34200, img: "./images/hot_1.png" },
+            { id: 102, name: "Ladies Dress", price: 55575, img: "./images/hot_2.png" },
+            { id: 103, name: "Bag", price: 42750, img: "./images/hot_3.png" },
+            { id: 104, name: "Heels", price: 22800, img: "./images/hot_4.png" },
+            { id: 105, name: "Coat", price: 25650, img: "./images/men_clothing_1.png" },
+            { id: 106, name: "Shirt", price: 233700, img: "./images/men_clothing_2.png" },
+            { id: 107, name: "Hoodie", price: 51300, img: "./images/men_clothing_4.png" },
+            { id: 108, name: "Jacket", price: 51300, img: "./images/product1.png" },
+            { id: 109, name: "Travelling Bag", price: 45600, img: "./images/product2.png" },
+            { id: 110, name: "Dress", price: 42750, img: "./images/product3.png" },
+            { id: 111, name: "Lady Dress", price: 19950, img: "./images/product4.png" },
+            { id: 112, name: "Sandal", price: 51300, img: "./images/product5.png" },
+            { id: 113, name: "Hand Bag", price: 2850, img: "./images/product6.png" },
+            { id: 114, name: "Watch", price: 513000, img: "./images/product7.png" },
+            { id: 115, name: "Shirt", price: 165300, img: "./images/product8.png" },
+            { id: 116, name: "Loafer", price: 336300, img: "./images/product9.png" },
+            { id: 117, name: "Shirt", price: 364800, img: "./images/product10.png" },
+            { id: 118, name: "Sweater", price: 1590300, img: "./images/product11.png" },
+            { id: 119, name: "Shirt", price: 1590300, img: "./images/product12.jpg" },
+            { id: 120, name: "Watch", price: 1020300, img: "./images/product13.jpg" },
+            { id: 121, name: "Red Shirt", price: 71250, img: "./images/product14.jpg" },
+            { id: 122, name: "Watch", price: 165300, img: "./images/product15.jpg" },
+            { id: 123, name: "Air-Buds", price: 165300, img: "./images/product16.jpg" },
+            { id: 124, name: "Wallet", price: 1590300, img: "./images/product17.jpg" }
+        ];
+    }
+
+    function loadProducts() {
+        let products = JSON.parse(localStorage.getItem("adminProducts"));
+        if (!products || products.length === 0) {
+            products = getDefaultProducts();
+            localStorage.setItem("adminProducts", JSON.stringify(products));
+        }
+        renderProducts(products);
+        loadStats();
+    }
+
+    function renderProducts(products) {
+        const container = document.getElementById("adminProducts");
+        container.innerHTML = "";
+        products.forEach(p => {
+            container.innerHTML += `
+                <div class="admin-p-card">
+                    <img src="${p.img}" alt="${p.name}" onerror="this.src='./images/product1.png'">
+                    <h4>${p.name}</h4>
+                    <p>${formatPKR(p.price)}</p>
+                    <div class="card-actions">
+                        <button class="edit-btn" onclick="editProduct(${p.id})">Edit</button>
+                        <button class="delete-btn" onclick="deleteProduct(${p.id})">Delete</button>
+                    </div>
+                </div>`;
         });
     }
 
-    /* ------------------ NAVBAR TOGGLE ------------------ */
-    const toggleButton = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    function saveProduct() {
+        const editId = document.getElementById("editId").value;
+        const name = document.getElementById("pName").value.trim();
+        const price = Number(document.getElementById("pPrice").value);
+        const img = document.getElementById("pImg").value.trim() || "./images/product1.png";
 
-    toggleButton.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
+        if (!name || !price) { alert("Enter name and price"); return; }
 
-    /* ------------------ BUTTONS ------------------ */
-    window.clearOrders = function() {
-        if(confirm("Delete all orders?")){
-            localStorage.removeItem("orders");
-            location.reload();
+        let products = JSON.parse(localStorage.getItem("adminProducts")) || getDefaultProducts();
+
+        if (editId) {
+            const idx = products.findIndex(p => p.id == editId);
+            if (idx !== -1) {
+                products[idx].name = name;
+                products[idx].price = price;
+                products[idx].img = img;
+            }
+        } else {
+            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            products.push({ id: newId, name, price, img });
         }
-    };
 
-    window.clearCart = function() {
-        localStorage.removeItem("cart");
-        alert("Cart cleared");
-    };
+        localStorage.setItem("adminProducts", JSON.stringify(products));
+        resetForm();
+        renderProducts(products);
+        loadStats();
+    }
 
+    function editProduct(id) {
+        let products = JSON.parse(localStorage.getItem("adminProducts")) || getDefaultProducts();
+        const p = products.find(prod => prod.id === id);
+        if (!p) return;
+        document.getElementById("editId").value = p.id;
+        document.getElementById("pName").value = p.name;
+        document.getElementById("pPrice").value = p.price;
+        document.getElementById("pImg").value = p.img;
+        document.getElementById("formTitle").innerText = "Edit Product";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function deleteProduct(id) {
+        if (!confirm("Delete this product?")) return;
+        let products = JSON.parse(localStorage.getItem("adminProducts")) || getDefaultProducts();
+        products = products.filter(p => p.id !== id);
+        localStorage.setItem("adminProducts", JSON.stringify(products));
+        renderProducts(products);
+        loadStats();
+    }
+
+    function resetForm() {
+        document.getElementById("editId").value = "";
+        document.getElementById("pName").value = "";
+        document.getElementById("pPrice").value = "";
+        document.getElementById("pImg").value = "";
+        document.getElementById("formTitle").innerText = "Add New Product";
+    }
+
+    /* ===== USERS ===== */
+    function loadUsers() {
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const container = document.getElementById("usersContainer");
+        container.innerHTML = "";
+        if (users.length === 0) {
+            container.innerHTML = '<p style="color:#999">No users logged in yet</p>';
+            return;
+        }
+        users.forEach(user => {
+            container.innerHTML += `
+                <div class="user-card">
+                    <p><strong>Name:</strong> ${user.name}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                </div>`;
+        });
+    }
+
+    /* ===== CHART ===== */
+    function drawChart() {
+        const canvas = document.getElementById("salesChart");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        canvas.width = canvas.parentElement.offsetWidth - 40;
+        canvas.height = 250;
+
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const sales = orders.map(o => Number(o.amount));
+        const labels = orders.map(o => o.orderId.slice(-4));
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (sales.length === 0) {
+            ctx.fillStyle = "#999";
+            ctx.font = "16px Inter, sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("No sales data yet", canvas.width / 2, canvas.height / 2);
+            return;
+        }
+
+        const max = Math.max(...sales);
+        const barWidth = Math.min(40, (canvas.width - 60) / sales.length - 10);
+        const startX = (canvas.width - (barWidth + 10) * sales.length) / 2;
+
+        sales.forEach((val, i) => {
+            const barHeight = (val / max) * (canvas.height - 60);
+            const x = startX + i * (barWidth + 10);
+            const y = canvas.height - 30 - barHeight;
+
+            const gradient = ctx.createLinearGradient(x, y, x, canvas.height - 30);
+            gradient.addColorStop(0, "#c8a951");
+            gradient.addColorStop(1, "#b8963a");
+            ctx.fillStyle = gradient;
+
+            ctx.beginPath();
+            ctx.roundRect(x, y, barWidth, barHeight, [4, 4, 0, 0]);
+            ctx.fill();
+
+            ctx.fillStyle = "#333";
+            ctx.font = "11px Inter, sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(labels[i] || "", x + barWidth / 2, canvas.height - 10);
+
+            ctx.fillStyle = "#666";
+            ctx.font = "10px Inter, sans-serif";
+            ctx.fillText(formatPKR(val), x + barWidth / 2, y - 6);
+        });
+    }
+
+    /* ===== BUTTONS ===== */
     window.logout = function() {
         localStorage.removeItem("adminLogged");
         window.location.href = "admin-login.html";
     };
-};
-</script>
-
+    </script>
 </body>
-
 </html>

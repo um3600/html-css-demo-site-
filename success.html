@@ -1,61 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Payment Success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success | EcomShop</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="success-box">
-        <h1>✅ Payment Received</h1>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">Ecom<span>Shop</span></a></h1>
+        </div>
+    </header>
 
+    <div class="success-box">
+        <h1>Payment Successful</h1>
         <div class="receipt">
             <p><strong>Order ID:</strong> <span id="orderId"></span></p>
             <p><strong>Name:</strong> <span id="name"></span></p>
             <p><strong>Email:</strong> <span id="email"></span></p>
-            <p><strong>Account No:</strong> <span id="account"></span></p>
-            <p><strong>Paid Amount:</strong> $<span id="amount"></span></p>
-            <p><strong>Status:</strong> Successful</p>
+            <p><strong>JazzCash Number:</strong> <span id="account"></span></p>
+            <p><strong>Amount Paid:</strong> <span id="amount"></span></p>
+            <p><strong>Payment Method:</strong> <span id="method">JazzCash</span></p>
+            <p><strong>Date:</strong> <span id="date"></span></p>
+            <p><strong>Status:</strong> <span style="color:#27ae60;font-weight:700">Paid</span></p>
         </div>
-        <button onclick="printReceipt()" class="print-btn">
-            🧾 Print Receipt
-        </button>
-
+        <button onclick="window.print()" class="print-btn">Print Receipt</button>
+        <br><br>
         <a href="index.html">Back to Home</a>
     </div>
-    <script>
-        function printReceipt() {
-            window.print();
-        }
-    </script>
 
     <script>
         const order = JSON.parse(localStorage.getItem("order"));
+        if (!order) { alert("Invalid Order"); window.location.href = "index.html"; }
 
-        if (!order) {
-            alert("Invalid Order");
-            window.location.href = "index.html";
-        }
+        document.getElementById("orderId").innerText = order.orderId;
+        document.getElementById("name").innerText = order.name;
+        document.getElementById("email").innerText = order.email;
+        document.getElementById("account").innerText = order.account;
+        document.getElementById("amount").innerText = "Rs. " + Number(order.amount).toLocaleString("en-PK");
+        if (order.method) document.getElementById("method").innerText = order.method;
+        if (order.date) document.getElementById("date").innerText = order.date;
 
-        // show data
-        orderId.innerText = order.orderId;
-        name.innerText = order.name;
-        email.innerText = order.email;
-        account.innerText = order.account;
-        amount.innerText = order.amount;
-
-        // ✅ AUTO CLEAR CART AFTER PAYMENT
         localStorage.removeItem("cart");
         localStorage.removeItem("checkoutTotal");
-
-        // 🔥 Save order for admin dashboard
-        let orders = JSON.parse(localStorage.getItem("orders")) || [];
-        orders.push(order);
-        localStorage.setItem("orders", JSON.stringify(orders));
     </script>
-
 </body>
-
 </html>
