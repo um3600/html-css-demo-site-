@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f6fa;
+}
+
+.cart-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.cart-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+}
+
+.cart-img {
+    width: 90px;
+    height: 90px;
+    background: #eee;
+    border-radius: 6px;
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #777;
+}
+
+.cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-qty button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cart-total {
+    font-weight: bold;
+    width: 80px;
+    text-align: right;
+}
+
+.remove-btn {
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cart-summary {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.cart-summary p,
+.cart-summary h3 {
+    margin: 10px 0;
+}
+
+.checkout-btn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #2ecc71;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    display: none;
+    margin-top: 10px;
+    background: #333;
+    border-radius: 5px;
+  }
+
+  .nav-links a {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .content-card {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .content-card h2 {
+    font-size: 24px;
+  }
+
+  .content-card p {
+    font-size: 14px;
+  }
+}

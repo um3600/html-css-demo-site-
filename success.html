@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="success-box">
+        <h1>✅ Payment Received</h1>
+
+        <div class="receipt">
+            <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Account No:</strong> <span id="account"></span></p>
+            <p><strong>Paid Amount:</strong> $<span id="amount"></span></p>
+            <p><strong>Status:</strong> Successful</p>
+        </div>
+        <button onclick="printReceipt()" class="print-btn">
+            🧾 Print Receipt
+        </button>
+
+        <a href="index.html">Back to Home</a>
+    </div>
+    <script>
+        function printReceipt() {
+            window.print();
+        }
+    </script>
+
+    <script>
+        const order = JSON.parse(localStorage.getItem("order"));
+
+        if (!order) {
+            alert("Invalid Order");
+            window.location.href = "index.html";
+        }
+
+        // show data
+        orderId.innerText = order.orderId;
+        name.innerText = order.name;
+        email.innerText = order.email;
+        account.innerText = order.account;
+        amount.innerText = order.amount;
+
+        // ✅ AUTO CLEAR CART AFTER PAYMENT
+        localStorage.removeItem("cart");
+        localStorage.removeItem("checkoutTotal");
+
+        // 🔥 Save order for admin dashboard
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+    </script>
+
+</body>
+
+</html>

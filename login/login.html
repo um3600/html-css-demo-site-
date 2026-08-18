@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Ecomshop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #111;
+            padding: 30px 40px;
+            border-radius: 10px;
+            color: #fff;
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login to Ecomshop</h2>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <button onclick="loginUser()">Login</button>
+</div>
+
+<script>
+function loginUser() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!name || !email) {
+        alert("Please enter both name and email");
+        return;
+    }
+
+    // Save user info in localStorage
+    localStorage.setItem("userLogged", "true");
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+
+    alert("Login successful!");
+    window.location.href = "../My-Cart.html"; // redirect after login
+}
+</script>
+
+</body>
+</html>
